@@ -78,23 +78,23 @@ function resetCO2() {
 	localStorage.removeItem("footprint");
 	refreshFootprint();
 	reset();
-	$('#myModal').modal('hide');
+	$('#nativeMenu').modal('hide');
 }
 
 function showAbout() {
-	$('#about').removesClass('hide');
+	$('#about').removeClass('hide');
 	$('#calculator').addClass('hide');
-	$('#myModal').modal('hide');
+	$('#nativeMenu').modal('hide');
 }
 
 function showCalculator() {
 	$('#calculator').removeClass('hide');
 	$('#about').addClass('hide');
-	$('#myModal').modal('hide');
+	$('#nativeMenu').modal('hide');
 }
 
 function save() {
-	var val = localStorage.getItem("footprint") + parseInt(getCO2());
+	var val = localStorage.getItem("footprint") + getCO2();
 	localStorage.setItem("footprint", val);
 	refreshFootprint();
 	reset();
@@ -131,14 +131,14 @@ window.onload = function() {
 	refreshFootprint();
 
 	$('.navbar-brand').click(function(e) {		
-		$('#myModal').modal('toggle');
+		$('#nativeMenu').modal('toggle');
 	});
 
-	$('#myModal').on('show.bs.modal', function (e) {
+	$('#nativeMenu').on('show.bs.modal', function (e) {
 		$('.btn-navbar').addClass('selected');
 	});
 
-	$('#myModal').on('hide.bs.modal', function (e) {
+	$('#nativeMenu').on('hide.bs.modal', function (e) {
 		$('.btn-navbar').removeClass('selected');
 	})
 
