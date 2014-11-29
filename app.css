@@ -1,0 +1,54 @@
+.navbar-brand {
+	padding: 0px 0px 0px 0px;
+}
+
+.navbar {
+	z-index:1050;
+	border: 0px;
+}
+
+.btn-navbar {
+	background: #eb6864;
+	font-size: 20px;
+	background: none;
+	border: none;
+	padding: 0px 0px 0px 0px;
+	margin-left: -10px;
+}
+
+.btn-navbar.selected {
+	border: none;
+	transition: margin 500;
+	margin-left: -15px;
+}
+
+.modal.fade:not(.in).left .modal-dialog {
+	-webkit-transform: translate3d(-25%, 0, 0);
+	transform: translate3d(-25%, 0, 0);
+}
+
+.modal {
+	padding: 0px !important;
+	top: 50px;
+}
+
+.modal-dialog {
+	width: 90%;
+	margin: 0px;
+	border: none;
+	border-radius: 0px;
+}
+
+.modal-body {
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+.modal-content {
+	border-radius: 0px;
+}
+
+.list-group-item:first-child, .list-group-item:last-child {
+	border-radius: 0px;
+}

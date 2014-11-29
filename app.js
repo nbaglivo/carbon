@@ -63,6 +63,7 @@ function refreshFootprint() {
 		var d = new Date();
 		var start = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
 		localStorage.setItem("start", start);
+		localStorage.setItem("footprint", footprint);
 	}
 
 	$('#footprint-value').html(footprint + ' CO2 desde el ' + localStorage.getItem("start"));
@@ -73,9 +74,28 @@ function showResult() {
 	$('#result-buttons').removeClass('hide');
 }
 
+function resetCO2() {
+	localStorage.removeItem("footprint");
+	refreshFootprint();
+	reset();
+	$('#myModal').modal('hide');
+}
+
+function showAbout() {
+	$('#about').removesClass('hide');
+	$('#calculator').addClass('hide');
+	$('#myModal').modal('hide');
+}
+
+function showCalculator() {
+	$('#calculator').removeClass('hide');
+	$('#about').addClass('hide');
+	$('#myModal').modal('hide');
+}
+
 function save() {
 	var val = localStorage.getItem("footprint") + parseInt(getCO2());
-	localStorage.setItem("footprint", getCO2());
+	localStorage.setItem("footprint", val);
 	refreshFootprint();
 	reset();
 }
@@ -109,6 +129,18 @@ function warn(txt) {
 
 window.onload = function() {
 	refreshFootprint();
+
+	$('.navbar-brand').click(function(e) {		
+		$('#myModal').modal('toggle');
+	});
+
+	$('#myModal').on('show.bs.modal', function (e) {
+		$('.btn-navbar').addClass('selected');
+	});
+
+	$('#myModal').on('hide.bs.modal', function (e) {
+		$('.btn-navbar').removeClass('selected');
+	})
 
 	$('#transportation-select').on('change', function() {
 		var value = $(this).val();
