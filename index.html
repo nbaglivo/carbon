@@ -1,17 +1,65 @@
 <head>
 	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<script src="lib/jquery-1.11.1.min.js" type="text/javascript"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="app.js" type="text/javascript"></script>
 </head>
 <body>
-	<div class="panel panel-success">
-		<div class="panel-heading">Carbon</div>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">
+					<img alt="Brand" src="assets/logo.png" style="max-width:100%;max-height:100%;display:inline">
+					<span> Carbon </span>
+				</a>
+			</div>
+		</div>
+	</nav>
+	<div class="panel panel-info">
+		<div class="panel-heading">Llevas emitiendo <span id='footprint-value'></span></div>
 			<div class="panel-body">
-				<select class="form-control input-sm">
-					<option value="car">Auto</option>
-					<option value="car">Bondi</option>
-					<option value="car">Bicicleta</option>
-					<option value="car">A pata</option>
-				</select>
+				<div class="form-group">
+					<label for="transportation-select">Medio de transporte</label>
+					<select id="transportation-select" class="form-control input-sm">
+						<option value="foot">A pata</option>
+						<option value="bicycle">Bicicleta</option>
+						<option value="bus">Bondi</option>
+						<option value="car">Auto</option>
+					</select>
+				</div>
+				<div id="fueltype" class="form-group hide">
+					<label for="fueltype-select">Tipo de combustible</label>
+					<select id="fueltype-select" class="form-control input-sm">
+						<option value="naphtha">Nafta</option>
+						<option value="diesel">Diesel</option>
+						<option value="gnc">GNC</option>
+					</select>
+				</div>
+				<div id="distance" class="form-group hide">
+					<label for="distance-input">Distancia (en kilometros)</label>
+					<input type="text" class="form-control" id="distance-input" placeholder="">
+				</div>
+				<div id="efficiency" class="form-group hide">
+					<label for="efficiency-input">Eficiencia (n&uacutemero de kilometros por litro consumido)</label>
+					<input type="text" class="form-control" id="efficiency-input" placeholder="">
+				</div>
+				<div id="transportation-occupants" class="form-group hide">
+					<label for="transportation-occupants-input">N&uacutemero de ocupantes del veh&iacuteculo</label>
+					<input type="text" class="form-control" id="transportation-occupants-input" placeholder="">
+				</div>
+				<div id="result" class="alert alert-success">
+					<span id="result-txt">&#161Buen viaje!</span>
+					<div id="result-buttons" class="hide" style="display:inline;">
+						<button id="accept-result-button" type="button" class="btn btn-default" onclick="save();">
+							<span class="glyphicon glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+							<span>Si</span>
+						</button>
+						<button id="deny-result-button" type="button" class="btn btn-default" onclick="reset();">
+							<span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+							<span>No, voy a pata</span>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
