@@ -66,11 +66,11 @@ function refreshFootprint() {
 		localStorage.setItem("footprint", footprint);
 	}
 
-	$('#footprint-value').html(footprint + ' CO2 desde el ' + localStorage.getItem("start"));
+	$('#footprint-value').html(footprint + ' toneladas de CO2 desde el ' + localStorage.getItem("start"));
 }
 
 function showResult() {	
-	$('#result-txt').html('Este viaje te sumar&aacute '+ getCO2() +' CO2 a tu consciencia &#191Podr&aacutes soportarlo?');
+	$('#result-txt').html('Este viaje te sumar&aacute '+ getCO2() +' toneladas de CO2 a tu consciencia &#191Podr&aacutes soportarlo?');
 	$('#result-buttons').removeClass('hide');
 }
 
@@ -94,7 +94,7 @@ function showCalculator() {
 }
 
 function save() {
-	var val = localStorage.getItem("footprint") + getCO2();
+	var val = parseInt(localStorage.getItem("footprint")) + getCO2();
 	localStorage.setItem("footprint", val);
 	refreshFootprint();
 	reset();
@@ -108,8 +108,8 @@ function resetInputs() {
 	$('#result-buttons').addClass('hide');
 }
 
-function reset() {
-	$('#transportation-select').val('foot');
+function reset(value) {
+	$('#transportation-select').val(value || 'foot');
 	$('#fueltype').addClass('hide');
 	$('#distance').addClass('hide');
 	$('#efficiency').addClass('hide');
@@ -130,7 +130,8 @@ function warn(txt) {
 window.onload = function() {
 	refreshFootprint();
 
-	$('.navbar-brand').click(function(e) {		
+	var shown = false;
+	$('.navbar-brand').click(function(e) {
 		$('#nativeMenu').modal('toggle');
 	});
 
@@ -140,12 +141,12 @@ window.onload = function() {
 
 	$('#nativeMenu').on('hide.bs.modal', function (e) {
 		$('.btn-navbar').removeClass('selected');
-	})
+	});
 
 	$('#transportation-select').on('change', function() {
 		var value = $(this).val();
 		if (value === 'foot' || value === 'bicycle') {
-			reset();
+			reset(value);
 		} else if (value === 'car' ) {
 			resetInputs();
 
