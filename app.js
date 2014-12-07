@@ -43,7 +43,8 @@ function carCO2() {
 	var efficiency = $('#efficiency-input').val();
 	var occupants = $('#transportation-occupants-input').val();
 	var fuel = fuelFactor[$('#fueltype-select').val()];
-	return ((distance * fuel * (1/efficiency)) / 3) * 1 / occupants;
+	// (B9*2.37*(1/B11))/1000)*B5
+	return ((distance * fuel * (1/efficiency)) / 1000) / occupants;
 }
 
 function getCO2() {
@@ -61,7 +62,7 @@ function refreshFootprint() {
 	if (!footprint) {
 		footprint = 0;
 		var d = new Date();
-		var start = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+		var start = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
 		localStorage.setItem("start", start);
 		localStorage.setItem("footprint", footprint);
 	}
